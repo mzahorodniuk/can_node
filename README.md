@@ -18,7 +18,8 @@ can_node/                     ← open THIS folder in VS Code
 ├── constraints/
 │   └── pynq_z1.xdc           ← PYNQ-Z1 pinout + clock
 └── vivado/                   ← Vivado project lives isolated here (git-ignored)
-    ├── create_project.tcl    ← regenerates the whole project
+    ├── create_project.tcl    ← regenerates the project from sources
+    ├── build.tcl             ← headless synth → impl → bitstream
     └── can_node/can_node.xpr ← generated, do not edit by hand
 ```
 
@@ -40,14 +41,26 @@ vivado -mode batch -source vivado/create_project.tcl -tclargs --open   # + GUI
 This creates `vivado/can_node/can_node.xpr`. Delete the `vivado/can_node/`
 folder anytime and re-run to get a clean project.
 
+## Build a bitstream headless (no GUI)
+
+```bash
+vivado -mode batch -source vivado/build.tcl                 # synth → impl → .bit
+vivado -mode batch -source vivado/build.tcl -tclargs --jobs 8
+vivado -mode batch -source vivado/build.tcl -tclargs --no-bitstream   # stop after impl
+vivado -mode batch -source vivado/build.tcl -tclargs --reset          # wipe + rebuild project first
+```
+
+`build.tcl` generates the project first if it doesn't exist, fails loudly if
+synthesis/implementation don't reach 100 %, warns on negative timing slack, and
+copies the result to `build/can_node.bit`.
+
 ## Day-to-day flow
 
 - Edit `.vhd` / `.xdc` files here in VS Code.
-- New file? Add it to the matching folder — `create_project.tcl` globs
-  `src/`, `tb/` and `constraints/`, so just re-run it (or `add_files` in the
-  Vivado console). Keep `vhdl_ls.toml` libraries in sync so the editor sees it.
+- New file? Drop it in `src/`, `tb/` or `constraints/` — both `vhdl_ls.toml`
+  and the TCL scripts use folder globs, so re-running the TCL picks it up.
 - Commit only the tracked files; everything under `vivado/` except the build
-  script is ignored.
+  scripts (and `build/`) is git-ignored.
 
 ## Notes for this board
 

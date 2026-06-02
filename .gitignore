@@ -1,9 +1,14 @@
 # ── Vivado generated project ────────────────────────────────────────────
-# The whole Vivado project is reproducible from scripts/create_project.tcl,
-# so none of it belongs in version control. Ignore everything under vivado/
-# except the build script(s) that live there.
+# The whole Vivado project is reproducible from vivado/*.tcl, so none of it
+# belongs in version control. Ignore everything under vivado/ except the
+# build scripts that live there.
 vivado/*
 !vivado/.gitkeep
+!vivado/create_project.tcl
+!vivado/build.tcl
+
+# Bitstreams / build artifacts copied out by build.tcl
+build/
 
 # ── Vivado junk that can appear anywhere ────────────────────────────────
 *.jou
@@ -16,6 +21,17 @@ vivado/*
 .Xil/
 vivado*.backup.*
 usage_statistics_webtalk.*
+
+# ── Simulation artifacts ────────────────────────────────────────────────
+*.wdb
+*.vcd
+*.ghw
+xsim.dir/
+xelab.*
+xvhdl.*
+xvlog.*
+work-obj*.cf
+ghdl/
 
 # ── Editor / OS ─────────────────────────────────────────────────────────
 .vscode/
