@@ -1,0 +1,26 @@
+# Configuration for the VHDL_LS language server (rust_hdl).
+# Used by the "VHDL LS" VS Code extension to give you cross-file
+# navigation, completion and diagnostics WITHOUT needing Vivado open.
+#
+# Each [libraries] entry is a VHDL library. Files are matched with globs.
+# Keep design and testbench in separate libraries so the tools see them
+# the same way Vivado's sources_1 / sim_1 filesets do.
+
+[libraries]
+
+can_node.files = [
+    "src/**/*.vhd",
+]
+
+# Testbenches depend on the design library above.
+tb.files = [
+    "tb/**/*.vhd",
+]
+
+# If you ever pull in vendor / UNISIM primitives, point a library at them
+# here, e.g.:
+# unisim.files = ["/tools/Xilinx/Vivado/2023.2/data/vhdl/src/unisims/**/*.vhd"]
+
+[lint]
+# Treat unused declarations as warnings, not errors.
+unused = "warning"

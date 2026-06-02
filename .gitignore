@@ -1,0 +1,24 @@
+# ── Vivado generated project ────────────────────────────────────────────
+# The whole Vivado project is reproducible from scripts/create_project.tcl,
+# so none of it belongs in version control. Ignore everything under vivado/
+# except the build script(s) that live there.
+vivado/*
+!vivado/.gitkeep
+
+# ── Vivado junk that can appear anywhere ────────────────────────────────
+*.jou
+*.log
+*.str
+*.pb
+*.dcp
+*.bit
+*.ltx
+.Xil/
+vivado*.backup.*
+usage_statistics_webtalk.*
+
+# ── Editor / OS ─────────────────────────────────────────────────────────
+.vscode/
+*.swp
+*~
+.DS_Store
