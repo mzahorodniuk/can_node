@@ -6,6 +6,7 @@ vivado/*
 !vivado/.gitkeep
 !vivado/create_project.tcl
 !vivado/build.tcl
+!vivado/program.tcl
 
 # Bitstreams / build artifacts copied out by build.tcl
 build/
@@ -32,6 +33,11 @@ xvhdl.*
 xvlog.*
 work-obj*.cf
 ghdl/
+
+# ── GHDL build artifacts ────────────────────────────────────────────────
+*.o
+e~*
+can_node_top_tb
 
 # ── Editor / OS ─────────────────────────────────────────────────────────
 .vscode/

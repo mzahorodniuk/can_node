@@ -8,12 +8,10 @@
 
 [libraries]
 
+# Design and testbench share one library so `work.<unit>` resolves the same
+# way the language server, Vivado (xil_defaultlib) and GHDL all build it.
 can_node.files = [
     "src/**/*.vhd",
-]
-
-# Testbenches depend on the design library above.
-tb.files = [
     "tb/**/*.vhd",
 ]
 

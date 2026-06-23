@@ -57,7 +57,7 @@ if {[llength $tb_files] > 0} {
 
 # ── Tops ────────────────────────────────────────────────────────────────────
 set_property top $top_module [get_filesets sources_1]
-catch { set_property top "${top_module}_tb" [get_filesets sim_1] }
+catch { set_property top "can_node_tb" [get_filesets sim_1] }
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 
